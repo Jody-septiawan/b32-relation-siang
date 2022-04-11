@@ -76,7 +76,7 @@ export default function CategoryAdmin() {
                         >
                           Edit
                         </Button>
-                        <Button
+                        {/* <Button
                           onClick={() => {
                             handleDelete(item.id);
                           }}
@@ -84,7 +84,7 @@ export default function CategoryAdmin() {
                           style={{ width: '135px' }}
                         >
                           Delete
-                        </Button>
+                        </Button> */}
                       </td>
                     </tr>
                   ))}
@@ -105,9 +105,9 @@ export default function CategoryAdmin() {
         </Row>
       </Container>
       <DeleteData
-        setConfirmDelete={setConfirmDelete}
-        show={show}
-        handleClose={handleClose}
+      // setConfirmDelete={setConfirmDelete}
+      // show={show}
+      // handleClose={handleClose}
       />
     </>
   );

@@ -10,7 +10,7 @@ import Profile from './pages/Profile';
 import ComplainAdmin from './pages/ComplainAdmin';
 import CategoryAdmin from './pages/CategoryAdmin';
 import ProductAdmin from './pages/ProductAdmin';
-import UpdateCategoryAdmin from './pages/UpdateCategoryAdmin';
+// import UpdateCategoryAdmin from './pages/UpdateCategoryAdmin';
 import AddCategoryAdmin from './pages/AddCategoryAdmin';
 import AddProductAdmin from './pages/AddProductAdmin';
 import UpdateProductAdmin from './pages/UpdateProductAdmin';
@@ -85,7 +85,7 @@ function App() {
       <Route path="/profile" element={<Profile />} />
       <Route path="/complain-admin" element={<ComplainAdmin />} />
       <Route path="/category-admin" element={<CategoryAdmin />} />
-      <Route path="/update-category/:id" element={<UpdateCategoryAdmin />} />
+      {/* <Route path="/update-category/:id" element={<UpdateCategoryAdmin />} /> */}
       <Route path="/add-category" element={<AddCategoryAdmin />} />
       <Route path="/product-admin" element={<ProductAdmin />} />
       <Route path="/add-product" element={<AddProductAdmin />} />

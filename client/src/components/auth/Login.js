@@ -3,9 +3,9 @@ import { UserContext } from '../../context/userContext';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 
-// Import useMutation from react-query here ...
+import { useMutation } from 'react-query';
 
-// Get API config here ...
+import { API } from '../../config/api';
 
 export default function Login() {
   let navigate = useNavigate();
@@ -17,9 +17,12 @@ export default function Login() {
 
   const [message, setMessage] = useState(null);
 
-  // Create variabel for store data with useState here ...
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
 
-  // const { email, password } = form;
+  const { email, password } = form;
 
   const handleChange = (e) => {
     setForm({
@@ -28,7 +31,47 @@ export default function Login() {
     });
   };
 
-  // Create function for handle insert data process with useMutation here ...
+  const handleSubmit = useMutation(async (e) => {
+    try {
+      e.preventDefault();
+
+      // Configuration Content-type
+      const config = {
+        headers: {
+          'Content-type': 'application/json',
+        },
+      };
+
+      // Data body
+      const body = JSON.stringify(form);
+
+      // Insert data user to database
+      const response = await API.post('/login', body, config);
+
+      const user = response.data.data;
+
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: user,
+      });
+
+      if (user.status == 'admin') {
+        navigate('/product-admin');
+      } else {
+        navigate('/');
+      }
+
+      // Handling response here
+    } catch (error) {
+      const alert = (
+        <Alert variant="danger" className="py-1">
+          Failed
+        </Alert>
+      );
+      setMessage(alert);
+      console.log(error);
+    }
+  });
 
   return (
     <div className="d-flex justify-content-center">
@@ -40,7 +83,7 @@ export default function Login() {
           Login
         </div>
         {message && message}
-        <form>
+        <form onSubmit={(e) => handleSubmit.mutate(e)}>
           <div className="mt-3 form">
             <input
               type="email"
